@@ -20,7 +20,7 @@ export default class Address {
 			!this.street.length ||
 			!this.number ||
 			!this.city.length ||
-			this.zipCode.length
+			!this.zipCode.length
 		)
 			throw new Error('Dados de endereço inválidos.')
 	}

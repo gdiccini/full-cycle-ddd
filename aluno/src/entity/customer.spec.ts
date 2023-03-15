@@ -1,6 +1,55 @@
+import Address from './address'
+import Customer from './custumer'
+
 describe('Customer unit tests', () => {
-	it('should get 1 as result', () => {
-		const result = 1
-		expect(result).toBe(1)
+	it('should throw error when id is empty', () => {
+		expect(() => {
+			let customer = new Customer('', 'Giovani')
+		}).toThrowError('Id is required')
+	})
+
+	it('should throw error when name is empty', () => {
+		expect(() => {
+			let customer = new Customer('123', '')
+		}).toThrowError('Name is required')
+	})
+
+	it('should change name', () => {
+		let customer = new Customer('123', 'Giovani')
+		customer.changeName('João')
+
+		expect(customer.name).toBe('João')
+	})
+
+	it('should throw error when change name to empty value', () => {
+		expect(() => {
+			let customer = new Customer('123', 'Giovani')
+			customer.changeName('')
+		}).toThrowError('Name is required')
+	})
+
+	it('should activate customer', () => {
+		const customer = new Customer('1', 'Customer 1')
+		const address = new Address('Street 1', 123, '00000-000', 'Tatuí')
+		customer.address = address
+
+		customer.activate()
+
+		expect(customer.isActive()).toBe(true)
+	})
+
+	it('should throw error on activate when customer address is undefined', () => {
+		expect(() => {
+			const customer = new Customer('1', 'Customer 1')
+
+			customer.activate()
+		}).toThrowError('Address is mandatory to activate customer.')
+	})
+
+	it('should deactivate customer', () => {
+		const customer = new Customer('1', 'Customer 1')
+		customer.deactivate()
+
+		expect(customer.isActive()).toBe(false)
 	})
 })

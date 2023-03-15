@@ -1,35 +1,44 @@
 import Address from './address'
 
 export default class Customer {
-	/* Uma entidade é unica pois ela possui um id */
-	_id: string
+	private _id: string
+	private _name: string = ''
+	private _address!: Address
+	private _active: boolean = false
 
-	/* As outras propriedades da entidade são mutáveis */
-	_name: string
-
-	/* Endereço possui uma expressividade muito maior agora, visto que ele tem uma tipagem muito mais caracterizada para o que ele representa */
-	_address: Address
-
-	constructor(id: string, name: string, address: Address) {
+	constructor(id: string, name: string) {
 		this._id = id
 		this._name = name
-		this._address = address
+		this.validate()
 	}
 
-	get id(): string {
-		return this.id
+	validate() {
+		if (this._id.length === 0) throw new Error('Id is required')
+		if (this._name.length === 0) throw new Error('Name is required')
+	}
+
+	activate() {
+		if (this._address === undefined)
+			throw new Error('Address is mandatory to activate customer.')
+
+		this._active = true
+	}
+
+	deactivate() {
+		this._active = false
+	}
+
+	isActive(): boolean {
+		return this._active
+	}
+
+	changeName(name: string) {
+		this._name = name
+		this.validate()
 	}
 
 	get name(): string {
 		return this._name
-	}
-
-	get address(): Address {
-		return this._address
-	}
-
-	set name(name: string) {
-		this._name = name
 	}
 
 	set address(address: Address) {
