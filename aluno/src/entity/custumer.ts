@@ -1,6 +1,6 @@
 import Address from './address'
 
-class Customer {
+export default class Customer {
 	/* Uma entidade é unica pois ela possui um id */
 	_id: string
 
