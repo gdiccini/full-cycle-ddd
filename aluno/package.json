@@ -12,6 +12,7 @@
     "ts-node": "^10.9.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "yarn tsc -- --noEmit && jest",
+    "tsc": "tsc"
   }
 }
