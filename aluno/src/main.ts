@@ -1,7 +1,6 @@
-import Address from './entity/address'
-import Customer from './entity/custumer'
-import Order from './entity/order'
-import OrderItem from './entity/orderItem'
+import Customer from './domain/entity/custumer'
+import Order from './domain/entity/order'
+import OrderItem from './domain/entity/orderItem'
 
 let customer = new Customer('123', 'Giovani Diccini')
 
