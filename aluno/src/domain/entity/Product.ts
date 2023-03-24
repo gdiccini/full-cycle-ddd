@@ -10,17 +10,21 @@ export default class Product {
 		this.validate()
 	}
 
+	get id(): string {
+		return this._id
+	}
+
 	get name(): string {
 		return this._name
+	}
+
+	get price(): number {
+		return this._price
 	}
 
 	changeName(name: string): void {
 		this._name = name
 		this.validate()
-	}
-
-	get price(): number {
-		return this._price
 	}
 
 	changePrice(price: number): void {
@@ -40,5 +44,13 @@ export default class Product {
 		}
 
 		return true
+	}
+
+	toJSON() {
+		return {
+			id: this._id,
+			name: this._name,
+			price: this._price,
+		}
 	}
 }
