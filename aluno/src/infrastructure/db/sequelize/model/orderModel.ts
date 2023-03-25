@@ -1,32 +1,34 @@
-import { Column, Model, PrimaryKey, Table } from 'sequelize-typescript'
+import {
+	BelongsTo,
+	Column,
+	ForeignKey,
+	HasMany,
+	Model,
+	PrimaryKey,
+	Table,
+} from 'sequelize-typescript'
+import CustomerModel from './customerModel'
+import OrderItemModel from './orderItemModel'
 
 @Table({
-	tableName: 'customers',
+	tableName: 'orders',
 	timestamps: false,
 })
-export default class CustomerModel extends Model {
+export default class OrderModel extends Model {
 	@PrimaryKey
 	@Column
 	declare id: string
 
+	@ForeignKey(() => CustomerModel)
 	@Column({ allowNull: false })
-	declare name: string
+	declare customer_id: string
+
+	@BelongsTo(() => CustomerModel)
+	declare customer: CustomerModel
+
+	@HasMany(() => OrderItemModel)
+	declare items: OrderItemModel[]
 
 	@Column({ allowNull: false })
-	declare street: string
-
-	@Column({ allowNull: false })
-	declare number: number
-
-	@Column({ allowNull: false })
-	declare zipCode: string
-
-	@Column({ allowNull: false })
-	declare city: string
-
-	@Column({ allowNull: false })
-	declare active: boolean
-
-	@Column({ allowNull: false })
-	declare rewardPoints: number
+	declare total: number
 }
