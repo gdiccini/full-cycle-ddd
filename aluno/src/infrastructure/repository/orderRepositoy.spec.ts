@@ -1,8 +1,8 @@
 import { Sequelize } from 'sequelize-typescript';
-import Address from '../../domain/entity/address';
+import Address from '../../domain/customer/value-object/address';
 import Customer from '../../domain/entity/custumer';
 import Order from '../../domain/entity/order';
-import OrderItem from '../../domain/entity/orderItem';
+import OrderItem from '../../domain/checkout/orderItem';
 import Product from '../../domain/entity/Product';
 import CustomerModel from '../db/sequelize/model/customerModel';
 import OrderItemModel from '../db/sequelize/model/orderItemModel';
